@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Gestor de Libros</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <h1>GESTOR DE LIBROS</h1>
+
+  <div class="formulario">
+    <h2>Registrar libro</h2>
+    <form id="formulario">
+      <label>Título:
+        <input type="text" id="titulo" required />
+      </label>
+      <label>Autor:
+        <input type="text" id="autor" required />
+      </label>
+      <label>Año de publicación:
+        <input type="number" id="anio" min="1900" required />
+      </label>
+      <label>Genero:
+        <select id="genero" required>
+          <option value="">Seleccionar</option>
+          <option>Ficción</option>
+          <option>Terror</option>
+          <option>Drama</option>
+          <option>Poesía</option>
+          <option>Otros</option>
+        </select>
+      </label>
+      <button type="submit">Guardar</button>
+    </form>
+  </div>
+
+  
+  <div class="filtros">
+    <h2>Filtros</h2>
+    <label>Buscar por título:
+      <input type="text" id="busqueda" />
+    </label>
+    <label>Filtro por género:
+      <select id="filtro-genero">
+        <option value="">Todos</option>
+      </select>
+    </label>
+  </div>
+
+  <table>
+    <thead>
+      <tr>
+        <th>Título</th>
+        <th>Autor</th>
+        <th>Año <button id="ordenar">↕</button></th> <!--boton de ordenar-->
+        <th>Género</th>
+        <th>Acciones</th>
+      </tr>
+    </thead>
+    <tbody id="tabla-libros"></tbody>
+  </table>
+
+  <div class="resumen">
+    <h2>Resumen estadístico</h2>
+    <p>Total de libros: <span id="total"></span></p>
+    <p>Promedio de año: <span id="promedio"></span></p>
+    <p>Libros después de 2010: <span id="posteriores"></span></p>
+    <p>Más antiguo: <span id="antiguo"></span></p>
+    <p>Más reciente: <span id="reciente"></span></p>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>
