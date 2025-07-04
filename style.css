@@ -1,0 +1,107 @@
+* {
+    margin: 0;
+    padding: 0;
+    font-family: sans-serif;
+  }
+  
+  body {
+    background-color: #000000;
+    color: #000000;
+    padding: 50px;
+    max-width: 900px;
+    margin: auto;
+  }
+  
+  h1 {
+    text-align: center;
+    margin-bottom: 50px;
+    color: #3cff00;
+  }
+  
+  .formulario, .filtros, .resumen {
+    background-color: #000000;
+    padding: 50px;
+    border-radius: 10px;
+    box-shadow: 0 2px 20px rgba(45, 241, 6, 0.1);
+    margin-bottom: 30px;
+  }
+  
+  .formulario h2,
+  .filtros h2,
+  .resumen h2 {
+    margin-bottom: 15px;
+    color: #0fee0b;
+  }
+  
+  label {
+    display: block;
+    margin-bottom: 50px;
+    font-weight: bold;
+  }
+  
+  input, select, button {
+    width: 100%;
+    padding: 8px;
+    margin-top: 5px;
+    margin-bottom: 15px;
+    border: 1px solid #6af111;
+    border-radius: 5px;
+  }
+  
+  button {
+    background-color: #f008d1;
+    color: rgb(0, 0, 0);
+    font-weight: bold;
+    cursor: pointer;
+    border: none;
+  }
+  
+  button:hover {
+    background-color: #f6f6f6;
+  }
+  
+  table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-bottom: 30px;
+    background-color: #fff;
+    border-radius: 8px;
+    overflow: hidden;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+  }
+  
+  th, td {
+    padding: 12px;
+    text-align: left;
+    border-bottom: 1px solid #ddd;
+  }
+  
+  th {
+    background-color: #f2f2f2;
+    color: #333;
+  }
+  
+  #ordenar {
+    background-color: transparent;
+    border: none;
+    cursor: pointer;
+    font-size: 14px;
+  }
+  
+  /*  */
+  button.editar {
+    background-color: #ed0eda;
+  }
+  
+  button.eliminar {
+    background-color: #fa14e0;
+  }
+  
+  button.editar:hover {
+    background-color: #0af0f0;
+  }
+  
+  button.eliminar:hover {
+    background-color: #d32f2f;
+  }
+  
