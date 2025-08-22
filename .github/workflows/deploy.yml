@@ -11,9 +11,10 @@ jobs:
       - name: Deploy por SSH (git pull en el servidor)
         uses: appleboy/ssh-action@v0.1.10
         with:
-          host: 137.184.127.11
-          username: alumno
+          host: ${{ secrets.SERVER_IP }}
+          username: ${{ secrets.SERVER_USER }}
           key: ${{ secrets.SSH_PRIVATE_KEY }}
+          passphrase: ${{ secrets.SSH_PASSPHRASE }}  # <--- esto faltaba
           script: |
             set -e
             cd ~/lemp-sites/anabella_villaverde/Practico_Evaluativo_Gestor_de_Libros
