@@ -1,0 +1,19 @@
+name: CD
+
+on:
+  push:
+    branches: [ "main" ]
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Deploy por SSH (git pull en el servidor)
+        uses: appleboy/ssh-action@v0.1.10
+        with:
+          host: 137.184.127.11
+          username: alumno
+          key: ${{ secrets.SSH_PRIVATE_KEY }}
+          script: |
+            cd ~/lemp-sites/anabella_villaverde/Practico_Evaluativo_Gestor_de_Libros
+            git pull origin main
