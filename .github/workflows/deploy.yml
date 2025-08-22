@@ -1,12 +1,22 @@
-- name: Deploy por SSH (git pull en el servidor)
-  uses: appleboy/ssh-action@v0.1.10
-  with:
-    host: ${{ secrets.SERVER_IP }}
-    username: ${{ secrets.SERVER_USER }}
-    key: ${{ secrets.SSH_PRIVATE_KEY }}
-    passphrase: ${{ secrets.SSH_PASSPHRASE }}
-    script: |
-      set -e
-      cd ~/lemp-sites/anabella_villaverde/Practico_Evaluativo_Gestor_de_Libros
-      git pull origin main
-      echo "✅ Código actualizado en el servidor"
+name: CD - Deploy con Git Pull
+
+on:
+  push:
+    branches: [ main ]
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Conectarse al servidor y hacer git pull
+        run: |
+          ssh -o StrictHostKeyChecking=no alumno@137.184.127.11 "
+            cd ~/lemp-sites/anabella_villaverde/Practico_Evaluativo_Gestor_de_Libros &&
+            git pull origin main
+          "
+        env:
+          # GitHub buscará este secreto para autenticarse vía SSH
+          # El secreto debe contener la clave privada ya configurada
+          # El servidor debe tener la clave pública en ~/.ssh/authorized_keys
+          SSH_PRIVATE_KEY: ${{ secrets.SSH_PRIVATE_KEY }}
+
