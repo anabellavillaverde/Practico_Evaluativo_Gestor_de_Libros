@@ -15,5 +15,7 @@ jobs:
           username: alumno
           key: ${{ secrets.SSH_PRIVATE_KEY }}
           script: |
+            set -e
             cd ~/lemp-sites/anabella_villaverde/Practico_Evaluativo_Gestor_de_Libros
             git pull origin main
+            echo "✅ Código actualizado en el servidor"
