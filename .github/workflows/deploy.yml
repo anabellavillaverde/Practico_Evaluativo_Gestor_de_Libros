@@ -2,22 +2,26 @@ name: CD - Deploy con Git Pull
 
 on:
   push:
-    branches: [ main ]
+    branches:
+      - main
 
 jobs:
   deploy:
+    name: Deploy to Server
     runs-on: ubuntu-latest
-    steps:
-      - name: Deploy por SSH (git pull en el servidor)
-        uses: appleboy/ssh-action@v0.1.10
-        with:
-          host: ${{ secrets.SERVER_IP }}           # Tu IP del servidor
-          username: ${{ secrets.SERVER_USER }}     # Tu usuario (alumno)
-          key: ${{ secrets.SSH_PRIVATE_KEY }}     # Tu llave privada completa
-          passphrase: ${{ secrets.SSH_PASSPHRASE }} # La passphrase de tu llave
-          script: |
-            set -e
-            cd ~/lemp-sites/anabella_villaverde/Practico_Evaluativo_Gestor_de_Libros
-            git pull origin main
-            echo "✅ Código actualizado en el servidor"
 
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Setup SSH
+        uses: webfactory/ssh-agent@v0.8.0
+        with:
+          ssh-private-key: ${{ secrets.SSH_PRIVATE_KEY }}
+
+      - name: Run Deploy Script
+        run: |
+          ssh -o StrictHostKeyChecking=no ${{ secrets.SERVER_USER }}@${{ secrets.SERVER_IP }} "
+            cd ~/lemp-sites/anabella_villaverde/Practico_Evaluativo_Gestor_de_Libros &&
+            git pull origin main
+          "
