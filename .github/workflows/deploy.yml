@@ -23,6 +23,6 @@ jobs:
         run: |
           ssh -o StrictHostKeyChecking=no ${{ secrets.SERVER_USER }}@${{ secrets.SERVER_IP }} "
             cd ~/lemp-sites/anabella_villaverde/Practico_Evaluativo_Gestor_de_Libros &&
-            git pull github-anabella main
+            git pull origin main
           "
 
