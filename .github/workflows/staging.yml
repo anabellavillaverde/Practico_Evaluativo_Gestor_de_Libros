@@ -1,0 +1,31 @@
+name: CD - Deploy Staging
+
+# Se ejecuta al hacer push a develop
+on:
+  push:
+    branches:
+      - develop
+
+jobs:
+  deploy:
+    name: Deploy to Staging Server
+    runs-on: ubuntu-latest
+
+    steps:
+      # 1️⃣ Traer el repo
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      # 2️⃣ Configurar SSH con tu llave privada
+      - name: Setup SSH
+        uses: webfactory/ssh-agent@v0.8.0
+        with:
+          ssh-private-key: ${{ secrets.SSH_PRIVATE_KEY }}
+
+      # 3️⃣ Ejecutar despliegue en el servidor
+      - name: Deploy to Staging
+        run: |
+          ssh -o StrictHostKeyChecking=no ${{ secrets.SERVER_USER }}@${{ secrets.SERVER_IP }} "
+            cd ~/lemp-sites/anabella_villaverde/staging &&
+            git pull origin develop
+          "
